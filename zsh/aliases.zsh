@@ -10,6 +10,10 @@
 alias sysvi=vi
 alias vi="nvim"
 alias gdc="git diff --cached"
+alias lg="lazygit"
+alias lgs="lazygit stash"
+alias lgl="lazygit log"
+alias lgb="lazygit branch"
 
 GREPEXCLUDE_FILES='--exclude="yarn.lock" --exclude="yarn-error.log" --exclude="package-lock.json"'
 GREPEXCLUDE_DIRS="--exclude-dir={node_modules,.git,coverage,dist}"
