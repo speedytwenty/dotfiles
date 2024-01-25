@@ -1,4 +1,4 @@
-targetShell=bash
+targetShell="bash"
 
-shellcheck ./install.sh ${targetShell}
-shellcheck ./check.sh --shell ${targetShell}
+shellcheck ./install.sh --shell=${targetShell}
+shellcheck ./check.sh --shell=${targetShell}
