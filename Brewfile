@@ -51,6 +51,7 @@ brew "highlight" # code syntax highlighting
 brew "htop" # a top alternative
 brew "jq" # work with JSON files in shell scripts
 brew "lazygit" # a better git UI
+brew "nb" # cli notes
 brew "neofetch" # pretty system info
 brew "neovim" # A better vim
 brew "pass" # Local CLI password manager.
