@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
---local utils = require("utils")
---local assets = wezterm.config_dir .. "/assets"
+local utils = require("utils")
+local assets = wezterm.config_dir .. "/assets"
 
 local act = wezterm.action
 
@@ -102,8 +102,9 @@ local config = {
 }
 
 --local is_dark = wezterm.gui.get_appearance():find("Dark")
---local is_dark = true
---local theme = utils.get_current_theme()
---utils.table_extend(true, config, require(theme)(is_dark, assets))
+local is_dark = true
+local theme = utils.get_current_theme()
+
+utils.table_extend(true, config, require(theme)(is_dark, assets))
 
 return config
