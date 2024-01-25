@@ -14,10 +14,7 @@ ZSH_THEME="crunch"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-autosuggestions git vscode)
-# plugins=(git)
-
-ZSH_DISABLE_COMPFIX=true
-source $OMZ/oh-my-zsh.sh
+#plugins=(git)
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -44,6 +41,9 @@ export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=1000000000
 export SAVEHIST=1000000000
 setopt EXTENDED_HISTORY
+
+ZSH_DISABLE_COMPFIX=true
+source $OMZ/oh-my-zsh.sh
 
 # export ZSH=$DOTFILES/zsh
 
@@ -77,7 +77,6 @@ export YVM_DIR=/usr/local/opt/yvm
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-
 
 
 # If a ~/.zshrc.local exists, source it
