@@ -77,3 +77,13 @@ source $HOME/.config/nvim/conf/markdown.vimrc
 source $HOME/.config/nvim/conf/colors.vimrc
 source $HOME/.config/nvim/conf/ide.vimrc
 source $HOME/.config/nvim/conf/javascript.vimrc
+
+" source $HOME/.config/nvim/conf/typescript.vimrc
+" source $HOME/.config/nvim/conf/php.vimrc
+" source $HOME/.config/nvim/config/init.vimrc
+" source $HOME/.config/nvim/config/plugins.vimrc
+" source $HOME/.config/nvim/config/general.vimrc
+" source $HOME/.config/nvim/config/keys.vimrc
+" source $HOME/.config/nvim/config/line.vimrc
+" source $HOME/.config/nvim/config/coc.vimrc
+" source $HOME/.config/nvim/config/general.vimrc
