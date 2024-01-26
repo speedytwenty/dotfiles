@@ -194,6 +194,17 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
 
 
+
+# https://askubuntu.com/questions/413436/copy-current-terminal-prompt-to-clipboard
+copy_line_to_clipboard() {
+    echo -n $BUFFER | pbcopy
+    echo "\ncopied line to clipboard:\n${BUFFER}\n"
+    zle reset-prompt
+}
+
+zle -N copy_line_to_clipboard
+bindkey '^Y' copy_line_to_clipboard
+
 # If a ~/.zshrc.local exists, source it
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 # If a ~/.localrc zshrc exists, source it
