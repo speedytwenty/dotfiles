@@ -54,14 +54,19 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 alias clsym="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
 
 
+# use eza if available
+if [[ -x "$(command -v eza)" ]]; then
+  alias ll="eza --icons --git --long"
+  alias l="eza --icons --git --all --long"
 # use exa if available
-if [[ -x "$(command -v exa)" ]]; then
+elif [[ -x "$(command -v exa)" ]]; then
   alias ll="exa --icons --git --long"
   alias l="exa --icons --git --all --long"
 else
   alias l="ls -lah ${colorflag}"
   alias ll="ls -lFh ${colorflag}"
 fi
+
 alias la="ls -AF ${colorflag}"
 alias lld="ls -l | grep ^d"
 alias rmf="rm -rf"

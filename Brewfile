@@ -38,6 +38,7 @@ brew "corepack"
 brew "docker-completion"
 brew "entr" # file watcher / command runner
 brew "exa" # ls alternative
+brew "eza" # ls/exa alternative
 brew "fd" # find alternative
 brew "fnm" # Fast Node version manager
 brew "fzf" # Fuzzy file searcher, used in scripts and in vim
