@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Preview a markdown file while you edit it.
+# Eg. mdw ./path/to/markdown.md
+
+clear && glow $1 && (echo $1 | entr -cp glow --pager -)
