@@ -77,4 +77,27 @@ The current source of truth can be found in the
 
 ### htop
 
-![./images/htop.png](http://htop.org)
+![htop fullscreen](./images/htop.png)
+
+## Keybindings
+
+### Karabiner
+
+#### [Mouse full emulation with right command super faster](https://ke-complex-modifications.pqrs.org/#mouse_full_emulation_with_right_command_super_fast)
+
+Mouse keys mode is active while you press the right_command key + Example key
+
+Release the right_command key to leave mouse keys mode.
+
+| Example key | Description |
+|:-----------:|-------------|
+|     H       | mouse left
+|     J       | mouse down
+|     K       | mouse up
+|     L       | mouse right
+|     V       | left click
+|     B       | middle click
+|     R       | right click
+|     F       | fast mode (fast mouse move by f + hjkl)
+|     D       | slow mode (slow mouse move by d + hjkl)
+|     S       | scroll mode (scroll by s + hjkl)
