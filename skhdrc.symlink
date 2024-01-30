@@ -1,0 +1,131 @@
+# See: keywords (modifiers and literals)
+#      https://github.com/koekeishiya/skhd/issues/1
+#
+# To debug run:
+#   tail -f /tmp/skhd_${USER}.err.log /tmp/skhd_${USER}.out.log
+#
+# add an on_enter command to the default mode
+# :: default : yabai -m config active_window_border_color 0xff775759
+#
+# defines a new mode 'test' with an on_enter command, that captures keypresses
+# :: test @ : yabai -m config active_window_border_color 0xff24ccaa
+#
+# from 'default' mode, activate mode 'test'
+# cmd - x ; test
+#
+# from 'test' mode, activate mode 'default'
+# test < cmd - x ; default
+#
+# launch a new terminal instance when in either 'default' or 'test' mode
+# default, test < cmd - return : open -na /Applications/Terminal.app
+
+# application specific bindings
+#
+# cmd - n [
+#     "kitty"       : echo "hello kitty"
+#     *             : echo "hello everyone"
+#     "qutebrowser" : echo "hello qutebrowser"
+#     "terminal"    ~
+#     "finder"      : false
+# ]
+
+# specify a file that should be included as an additional config-file.
+# treated as an absolutepath if the filename begins with '/' otherwise
+# the file is relative to the path of the config-file it was loaded from.
+#
+# .load "/Users/Koe/.config/partial_skhdrc"
+# .load "partial_skhdrc"
+
+# prevent skhd from monitoring events for specific applications.
+#
+# .blacklist [
+#    "kitty"
+#    "terminal"
+#    "qutebrowser"
+# ]
+
+# open terminal, blazingly fast compared to iTerm/Hyper
+# cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+
+# open qutebrowser
+# cmd + shift - return : ~/Scripts/qtb.sh
+
+# open mpv
+# cmd - m : open -na /Applications/mpv.app $(pbpaste)
+# alt + shift - h : yabai -m window --focus west
+# alt + shift - k : yabai -m window --focus north
+# alt + shift - l : yabai -m window --focus east
+
+# WINDOW
+
+# SPACES
+
+# # Move current space to previous display
+# alt + shift - h : yabai -m space --display prev
+# alt + shift - left : yabai -m space --display prev
+# # Move current space to first display
+# alt + shift - j : yabai -m space --display first
+# # Move current space to last display
+# alt + shift - k : yabai -m space --display last
+# # Move current space to next display
+# alt + shift - l : yabai -m space --display next
+# alt + shift - right : yabai -m space --display next
+
+# alt + shift - f : focus_next_space_prev_display
+
+# DISPLAY
+
+## Shifting Display Focus
+#
+# Not initially fond of the mouse follows focus yet insofar, I've found no
+# better method to indicate the focused screen and because when I'm
+# using yabai to focus a screen, I'm doing to focus a different space—which
+# seems to only work when the mouse is present on the display.
+ 
+# See: Changing focused display doesn't (quite work)
+#      https://github.com/koekeishiya/yabai/issues/1020
+#      "macOS uses the location of the cursor to decide which display will be
+#       affected by the space-switching shortcuts, rather than the display that
+#       has the window with key-focus—koekeishiya"
+
+# Best compromise I've come up with so far
+rshift + ralt - a : yabai -m display --focus west # left
+rshift + ralt - w : yabai -m display --focus north # up
+rshift + ralt - s : yabai -m display --focus south # down
+rshift + ralt - d : yabai -m display --focus east # right
+
+lshift + lalt - h : yabai -m display --focus west # left
+lshift + lalt - k : yabai -m display --focus north # up
+lshift + lalt - j : yabai -m display --focus south # down
+lshift + lalt - l: yabai -m display --focus east # right
+
+lcmd + lshift - h : yabai -m space --focus prev
+lcmd + lshift - l : yabai -m space --focus next
+# These are system? or covered by SizeUp so far
+# lcmd + left - h : yabai -m space --focus prev
+# lcmd + right - l : yabai -m space --focus next
+
+# Toggl Fullscreen
+cmd - return : yabai -m window --toggle native-fullscreen
+# Note: zoom-parent and zoom-fullscreen had no effect prima facie
+
+# rFocus last space
+#fn - s + x : yabai -m space --focus prev
+
+#cmd + shift - h : yabai -m window --display prev; yabai -m display --focus prev
+#cmd + shift - l : yabai -m window --display next; yabai -m display --focus next
+
+# Quick Apps
+cmd + shift - space : open -n -a "WezTerm"
+alt + shift - space : open -n -a "kitty"
+lctrl + lalt - space : qutebrowser &
+
+# Focus the first space on the active display
+#cmd - 0 : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[0]') 
+
+# cmd - 0x32 : yabai -m window --focus stack.prev\
+#           || yabai -m window --focus stack.next\
+#           || yabai -m window --focus prev\
+#           || yabai -m window --focus next\
+#           || yabai -m window --focus last\
+#           || yabai -m window --focus first
