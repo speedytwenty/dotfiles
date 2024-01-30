@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 setopt prompt_subst

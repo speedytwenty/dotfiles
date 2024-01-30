@@ -1,0 +1,34 @@
+# Sets the prompt [profile] and initializes the prompt
+
+# Use PROMPT_PROFILE=/path/to/my/prompt to override
+# Use PROMPT_PROFILE="none" to use default (or do your own thing)
+
+local _zprmpts=(
+  "nicknese"
+  "starship"
+  "none"
+)
+
+local _prmpt=$DOTFILES/zsh/prompts/$_zprmpts[1];
+
+# if (( ${+PROMPT_PROFILE} )); then
+if [[ -n "${PROMPT_PROFILE+1}" ]]; then
+  if [[ $PROMPT_PROFILE =~ '^[\.|\/]' ]]; then
+    if ! [[ -f $PROMPT_PROFILE ]]; then
+      echo "Specified PROMPT_PROFILE ${PROMPT_PROFILE} does not exist."
+    else
+      _prmpt="$PROMPT_PROFILE";
+    fi
+  # elif [[ $_zprmpts[(Ie)$PROMPT_PROFILE] ]]; then
+  #   echo "$PROMPT_PROFILE does not exist"
+  else
+    _prmpt="$DOTFILES/zsh/prompts/${PROMPT_PROFILE}"
+  fi
+fi
+
+if [[ $_prmpt != "none" ]]; then
+  source "$_prmpt"
+fi
+
+unset _prmpt;
+unset _zprmpts;

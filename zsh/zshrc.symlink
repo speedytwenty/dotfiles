@@ -1,4 +1,4 @@
-# plugins=(zsh-autosuggestions git vscode)
+export ZSH=$DOTFILES/zsh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -10,27 +10,8 @@
 #   export EDITOR='mvim'
 # fi
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Use vi mode https://koenwoortman.com/zsh-vim-mode/
-bindkey -v
-export KEYTIMEOUT=1
-
-
-# Increase command history
-# https://superuser.com/questions/1517138/increase-the-size-of-history-for-zsh
-export HISTFILE="$HOME/.zsh_history"
-export HISTSIZE=1000000000
-export SAVEHIST=1000000000
-setopt EXTENDED_HISTORY
-
-ZSH_DISABLE_COMPFIX=true
-
-export ZSH=$DOTFILES/zsh
-
 if [[ -d $DOTFILES/zsh/functions ]]; then
-    for func in $DOTFILES/zsh/functions/*(:t); autoload -U $func
+  for func in $DOTFILES/zsh/functions/*(:t); autoload -U $func
 fi
 
 ########################################################
@@ -46,14 +27,6 @@ prepend_path /usr/local/sbin
 prepend_path $DOTFILES/bin
 prepend_path $HOME/bin
 prepend_path $HOME/.local/bin
-
-# define the code directory
-# This is where my code exists and where I want the `c` autocomplete to work from exclusively
-if [[ -d ~/code ]]; then
-    export CODE_DIR=~/code
-elif [[ -d ~/Developer ]]; then
-    export CODE_DIR=~/Developer
-fi
 
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
@@ -77,69 +50,31 @@ setopt HIST_IGNORE_ALL_DUPS      # delete old recorded entry if new entry is a d
 
 setopt COMPLETE_ALIASES
 
-# make terminal command navigation sane again
-bindkey "^[[1;5C" forward-word                      # [Ctrl-right] - forward one word
-bindkey "^[[1;5D" backward-word                     # [Ctrl-left] - backward one word
-bindkey '^[^[[C' forward-word                       # [Ctrl-right] - forward one word
-bindkey '^[^[[D' backward-word                      # [Ctrl-left] - backward one word
-bindkey '^[[1;3D' beginning-of-line                 # [Alt-left] - beginning of line
-bindkey '^[[1;3C' end-of-line                       # [Alt-right] - end of line
-bindkey '^[[5D' beginning-of-line                   # [Alt-left] - beginning of line
-bindkey '^[[5C' end-of-line                         # [Alt-right] - end of line
-bindkey '^?' backward-delete-char                   # [Backspace] - delete backward
-if [[ "${terminfo[kdch1]}" != "" ]]; then
-    bindkey "${terminfo[kdch1]}" delete-char        # [Delete] - delete forward
-else
-    bindkey "^[[3~" delete-char                     # [Delete] - delete forward
-    bindkey "^[3;5~" delete-char
-    bindkey "\e[3~" delete-char
-fi
-bindkey "^A" vi-beginning-of-line
-bindkey -M viins "^F" vi-forward-word               # [Ctrl-f] - move to next word
-bindkey -M viins "^E" vi-add-eol                    # [Ctrl-e] - move to end of line
-bindkey "^J" history-beginning-search-forward
-bindkey "^K" history-beginning-search-backward
-
-# matches case insensitive for lowercase
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# pasting with tabs doesn't perform completion
-zstyle ':completion:*' insert-tab pending
-
-# default to file completion
-zstyle ':completion:*' completer _expand _complete _files _correct _approximate
-
-zstyle ':completion:*' verbose yes
-zstyle ':completion:*:descriptions' format '%B%d%b'
-zstyle ':completion:*:messages' format '%d'
-zstyle ':completion:*:warnings' format 'No matches for: %d'
-zstyle ':completion:*' group-name ''
-
-
 ########################################################
 # Plugin setup
 ########################################################
 
 export ZPLUGDIR="$CACHEDIR/zsh/plugins"
 [[ -d "$ZPLUGDIR" ]] || mkdir -p "$ZPLUGDIR"
+
 # array containing plugin information (managed by zfetch)
 typeset -A plugins
-
 zfetch mafredri/zsh-async async.plugin.zsh
 zfetch zsh-users/zsh-syntax-highlighting
 zfetch zsh-users/zsh-autosuggestions
 zfetch grigorii-zander/zsh-npm-scripts-autocomplete
 zfetch Aloxaf/fzf-tab
 
-if [[ -x "$(command -v fnm)" ]]; then
-    eval "$(fnm env --use-on-cd)"
-fi
-
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
 ########################################################
 # Setup
 ########################################################
+
+# Activate FNM (Fast Node Manager) on ch
+if [[ -x "$(command -v fnm)" ]]; then
+  eval "$(fnm env --use-on-cd)"
+fi
 
 if [ -f $HOME/.fzf.zsh ]; then
   source $HOME/.fzf.zsh
@@ -178,32 +113,17 @@ else # macOS `ls`
     colorflag="-G"
 fi
 
+
+#source $DOTFILES/zsh/prompts/starship
+#source $DOTFILES/zsh/prompts/nicknese
+
 # look for all .zsh files and source them
 config_files=($DOTFILES/**/*.zsh)
 for file in $config_files[@]; do
   source "$file"
 done
 
-## S20
-
-export YVM_DIR=/usr/local/opt/yvm
-[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"
-
-
-
-# https://askubuntu.com/questions/413436/copy-current-terminal-prompt-to-clipboard
-copy_line_to_clipboard() {
-    echo -n $BUFFER | pbcopy
-    echo "\ncopied line to clipboard:\n${BUFFER}\n"
-    zle reset-prompt
-}
-
-zle -N copy_line_to_clipboard
-bindkey '^Y' copy_line_to_clipboard
+load_prompt
 
 # If a ~/.zshrc.local exists, source it
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
@@ -211,3 +131,8 @@ bindkey '^Y' copy_line_to_clipboard
 [[ -a ~/.localrc ]] && source ~/.localrc
 # directory history with z
   . /usr/local/etc/profile.d/z.sh
+
+# Optional greeting
+if [[ -d $SHELL_GREETING ]]
+  then printf '%s' $SHELL_GREETING
+fi
