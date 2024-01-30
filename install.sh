@@ -68,7 +68,7 @@ setup_symlinks() {
   for file in $(get_linkables); do
     target="$HOME/.$(basename "$file" '.symlink')"
     if [ -e "$target" ]; then
-      info "~${target#$HOME} already exists... Skipping."
+      info "~${target}#${HOME} already exists... Skipping."
     else
       info "Creating symlink for $file"
       ln -s "$file" "$target"
@@ -86,7 +86,7 @@ setup_symlinks() {
   for config in $config_files; do
     target="$HOME/.config/$(basename "$config")"
     if [ -e "$target" ]; then
-      info "~${target#$HOME} already exists... Skipping."
+      info "~${target}#${HOME} already exists... Skipping."
     else
       info "Creating symlink for $config"
       ln -s "$config" "$target"
@@ -224,6 +224,10 @@ setup_macos() {
 
     echo "Enable Safari’s debug menu"
     defaults write com.apple.Safari IncludeInternalDebugMenu -bool true
+
+    # Enable XTEST in your X11 server now by running:
+    # https://stackoverflow.com/questions/1264210/does-mac-x11-have-the-xtest-extension
+    defaults write org.x.X11 enable_test_extensions -boolean true
 
     echo "Kill affected applications"
 

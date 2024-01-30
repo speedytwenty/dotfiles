@@ -1,4 +1,4 @@
-targetShell="bash"
+#!/usr/bin/env zsh
 
-shellcheck ./install.sh --shell=${targetShell}
-shellcheck ./check.sh --shell=${targetShell}
+shellcheck --shell="bash" --exclude=SC1091 -- **/*.sh
+shellcheck --shell="bash" --exclude=SC1091 -- **/*.zsh
