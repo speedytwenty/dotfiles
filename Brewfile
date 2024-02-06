@@ -1,9 +1,12 @@
 # vim:ft=ruby
 
+# https://homebrew-file.readthedocs.io/en/latest/usage.html
+
 # Cross OS Appplications
 #
 # These should work pretty much everywhere.
 cask "qutebrowser"
+cask "alacritty" # cross-platform openGL terminal emulator
 
 # packages
 brew "bat" # better cat (syntax highlighting)
@@ -19,6 +22,7 @@ brew "fzf" # Fuzzy file searcher, used in scripts and in vim
 brew "gh" # GitHub CLI
 brew "git" # Git version control (latest version)
 brew "git-delta" # a better git diff
+brew "glances" # system monitoring (htop alt)
 brew "glow" # markdown viewer
 brew "gnupg" # GPG
 brew "grep" # grep (latest)
@@ -40,6 +44,7 @@ brew "tree" # pretty-print directory contents
 # brew "vim" # Vim (latest)
 brew "wdiff" # word differences in text files
 brew "wget" # internet file retriever
+# brew "tophat/bar/yvm --without-node"
 brew "z" # switch between most used directories
 brew "zoxide" # switch between most used directories
 brew "zsh" # zsh (latest)
@@ -74,6 +79,7 @@ if OS.mac?
   cask "font-monaspace"
   cask "font-recursive-code"
   cask "font-symbols-only-nerd-font"
+  cask "font-source-code-pro"
   cask "font-ubuntu"
 elsif OS.linux?
   brew "xclip" # access to clipboard (similar to pbcopy/pbpaste)
