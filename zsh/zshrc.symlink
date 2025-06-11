@@ -22,10 +22,12 @@ fi
 autoload -U compinit add-zsh-hook
 compinit
 
+VOLTA_HOME=$HOME/.volta
 # prepend_path /usr/local/opt/grep/libexec/gnubin
 prepend_path /usr/local/sbin
 prepend_path $DOTFILES/bin
 prepend_path $HOME/bin
+prepend_path $VOLTA_HOME/bin
 prepend_path $HOME/.local/bin
 
 # display how long all tasks over 10 seconds take
@@ -72,9 +74,9 @@ zfetch Aloxaf/fzf-tab
 ########################################################
 
 # Activate FNM (Fast Node Manager) on ch
-if [[ -x "$(command -v fnm)" ]]; then
-  eval "$(fnm env --use-on-cd)"
-fi
+# if [[ -x "$(command -v fnm)" ]]; then
+#   eval "$(fnm env --use-on-cd)"
+# fi
 
 if [ -f $HOME/.fzf.zsh ]; then
   source $HOME/.fzf.zsh
@@ -136,3 +138,6 @@ load_prompt
 if [[ -d $SHELL_GREETING ]]
   then printf '%s' $SHELL_GREETING
 fi
+
+export YVM_DIR=/usr/local/opt/yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh

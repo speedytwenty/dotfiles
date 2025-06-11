@@ -72,11 +72,11 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-source $HOME/.config/nvim/conf/plugins.vimrc
-source $HOME/.config/nvim/conf/markdown.vimrc
-source $HOME/.config/nvim/conf/colors.vimrc
-source $HOME/.config/nvim/conf/ide.vimrc
-source $HOME/.config/nvim/conf/javascript.vimrc
+source $HOME/.config/nvim/profiles/legacy/plugins.vim
+source $HOME/.config/nvim/profiles/legacy/markdown.vim
+source $HOME/.config/nvim/profiles/legacy/colors.vim
+source $HOME/.config/nvim/profiles/legacy/ide.vim
+source $HOME/.config/nvim/profiles/legacy/javascript.vim
 
 " source $HOME/.config/nvim/conf/typescript.vimrc
 " source $HOME/.config/nvim/conf/php.vimrc

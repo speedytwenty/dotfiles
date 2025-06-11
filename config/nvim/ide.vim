@@ -11,6 +11,9 @@ match OverLength /\%150v.\+/
 " https://github.com/myusuf3/numbers.vim
 nnoremap N :NumbersToggle<CR>
 
+" unbind Shift + D (used to split terminal pane)
+map <S-d> <Nop>
+
 " Airline
 
 " let g:airline_theme='solarized'

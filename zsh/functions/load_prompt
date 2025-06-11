@@ -4,8 +4,8 @@
 # Use PROMPT_PROFILE="none" to use default (or do your own thing)
 
 local _zprmpts=(
-  "nicknese"
   "starship"
+  "nicknese"
   "none"
 )
 

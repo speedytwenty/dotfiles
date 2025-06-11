@@ -7,17 +7,29 @@
 # These should work pretty much everywhere.
 cask "qutebrowser"
 cask "alacritty" # cross-platform openGL terminal emulator
+cask "hyper"
+cask "tabby"
+# cask "warp"
+# Browsers
+cask "eloston-chromium"
+cask "tor-browser"
+cask "waterfox"
+cask "zen-browser"
+# Tools
+cask "bruno" # API CLIENT
+cask "motrix"
 
 # packages
 brew "bat" # better cat (syntax highlighting)
 brew "cloc" # lines of code counter
-brew "corepack"
+# brew "corepack"
 brew "docker-completion"
 brew "entr" # file watcher / command runner
 brew "eza" # ls/exa alternative
 brew "fd" # find alternative
 brew "fish" # fish shell
-brew "fnm" # Fast Node version manager
+# brew "fnm" # Fast Node version manager
+brew "volta"
 brew "fzf" # Fuzzy file searcher, used in scripts and in vim
 brew "gh" # GitHub CLI
 brew "git" # Git version control (latest version)
@@ -50,6 +62,9 @@ brew "zoxide" # switch between most used directories
 brew "zsh" # zsh (latest)
 brew "zsh-autosuggestions" # (latest)
 
+# Remove a brew package with "brew rmtree <package>"
+tap "beeftornado/rmtree"
+
 # OS Specific
 if OS.mac?
   # taps
@@ -61,7 +76,7 @@ if OS.mac?
 
   # Applications
   cask "kitty" # a better terminal emulator
-  cask "docker"
+#  cask "docker"
   cask "imageoptim" # a tool to optimize images
   cask "karabiner-elements" # macos keyboard customizer
   brew "musikcube" # terminal music player
@@ -83,5 +98,4 @@ if OS.mac?
   cask "font-ubuntu"
 elsif OS.linux?
   brew "xclip" # access to clipboard (similar to pbcopy/pbpaste)
-  brew "docker"
 end

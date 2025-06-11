@@ -10,6 +10,7 @@
 alias sysvi=vi
 alias vi='nvim'
 alias gdc='git diff --cached'
+alias glo='git log --oneline'
 alias lg='lazygit'
 alias lgs='lazygit stash'
 alias lgl='lazygit log'
@@ -23,8 +24,6 @@ GREPEXCLUDE="$GREPEXCLUDE_DIRS $GREPEXCLUDE_FILES"
 alias grepr='grep $GREPEXCLUDE -r'
 # shortcut for grep recursive with case insensitivity
 alias grepri='grep $GREPEXCLUDE -ri'
-
-alias gdc='it diff --cached'
 
 # reload zsh config
 alias reload!='RELOAD=1 source ~/.zshrc'

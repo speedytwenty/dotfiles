@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+local prevdis = yabai -m $(yabai -m query --displays --display prev)
+return previs | jq '.uuid';

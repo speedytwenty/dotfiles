@@ -106,19 +106,24 @@ lcmd + lshift - l : yabai -m space --focus next
 # lcmd + right - l : yabai -m space --focus next
 
 # Toggl Fullscreen
-cmd - return : yabai -m window --toggle native-fullscreen
+rcmd - return : yabai -m window --toggle native-fullscreen
+lcmd + lalt - return : yabai -m window --toggle native-fullscreen
 # Note: zoom-parent and zoom-fullscreen had no effect prima facie
 
 # rFocus last space
 #fn - s + x : yabai -m space --focus prev
+# fn + lshift - z : skhd --restart-service && yabai --stop-service && yabai --start-service
+# lshift + lalt - z  : yabai --stop-service & yabai --start-service
+
 
 #cmd + shift - h : yabai -m window --display prev; yabai -m display --focus prev
 #cmd + shift - l : yabai -m window --display next; yabai -m display --focus next
 
 # Quick Apps
 cmd + shift - space : open -n -a "WezTerm"
-alt + shift - space : open -n -a "kitty"
+alt + shift - space : open -n -a "tabby"
 lctrl + lalt - space : qutebrowser &
+
 
 # Focus the first space on the active display
 #cmd - 0 : yabai -m space --focus $(yabai -m query --displays --display | jq -r '.spaces[0]') 
